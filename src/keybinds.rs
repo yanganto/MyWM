@@ -4,7 +4,7 @@ use penrose::x11rb::RustConn;
 
 use std::collections::HashMap;
 
-pub fn key_bindings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
+pub fn settings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
     let mut map = HashMap::new();
     map.insert(
         KeyCode {

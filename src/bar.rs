@@ -2,14 +2,13 @@ use penrose::{x::XConn, Color};
 
 pub const FONT: &str = "Iosevka";
 pub const POINT_SIZE: u8 = 12;
-
-pub const BAR_HEIGHT_PX: u32 = 24;
-pub const GAP_PX: u32 = 5;
+pub const HEIGHT_PX: u32 = 24;
 
 pub const DEEP_OCEAN: u32 = 0x030F1CFF;
 pub const WHITE: u32 = 0xFFFFFFFF;
 pub const AQUA: u32 = 0x86A1B2FF;
 pub const SEA: u32 = 0x4DA2FFFF;
+const MAX_ACTIVE_WINDOW_CHARS: usize = 250;
 
 use penrose_ui::{
     bar::{
@@ -23,9 +22,7 @@ use penrose_ui::{
 };
 use std::time::Duration;
 
-const MAX_ACTIVE_WINDOW_CHARS: usize = 250;
-
-pub fn status_bar<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
+pub fn render<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
     let highlight: Color = AQUA.into();
     let empty_ws: Color = SEA.into();
 
@@ -42,7 +39,7 @@ pub fn status_bar<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
 
     StatusBar::try_new(
         Position::Top,
-        BAR_HEIGHT_PX,
+        HEIGHT_PX,
         style.bg.unwrap_or_else(|| 0x000000.into()),
         FONT,
         POINT_SIZE,
