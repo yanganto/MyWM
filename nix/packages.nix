@@ -1,6 +1,6 @@
-{ pkgs, self, crane, specificRust }:
+{ pkgs, self, crane }:
 let
-  craneLib = (crane.mkLib pkgs).overrideToolchain (p: specificRust);
+  craneLib = crane.mkLib pkgs;
   cargoToml = "${self}/Cargo.toml";
   cargoTomlConfig = builtins.fromTOML (builtins.readFile cargoToml);
   version = cargoTomlConfig.package.version;

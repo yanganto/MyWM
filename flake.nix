@@ -27,7 +27,6 @@
         });
         packages = (import ./nix/packages.nix { 
           inherit self pkgs crane;
-          specificRust = pkgs.rust-bin.stable."1.87.0".minimal;
         });
       }
     );
