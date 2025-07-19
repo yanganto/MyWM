@@ -10,9 +10,18 @@
         flake-utils.follows = "flake-utils";
       };
     };
+
+    crane = {
+      url = "github:ipetkov/crane";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
   };
 
-  outputs = { self, nixpkgs, rust-overlay, flake-utils, ... }:
+  outputs = { self, nixpkgs, rust-overlay, flake-utils, crane, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         overlays = [ (import rust-overlay) ];
@@ -23,11 +32,15 @@
       {
         devShell = pkgs.mkShell ({
           buildInputs = with pkgs; [ 
-            rust-bin.stable."1.87.0".default 
+            rust-bin.stable."1.87.0".minimal
             xorg.libX11
             xorg.libXft
             pkg-config
           ];
+        });
+        packages = (import ./nix/packages.nix { 
+          inherit self pkgs crane;
+          specificRust = pkgs.rust-bin.stable."1.87.0".minimal;
         });
       }
     );

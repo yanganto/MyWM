@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "crane": {
+      "locked": {
+        "lastModified": 1752859226,
+        "narHash": "sha256-Vk9qUd0pCkyJZiSDRxJBEDkxEr8CNcwBtuFuZr/HYNc=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "126943a6f7b7c6535c0348fe3ba472c3b19f0e20",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -36,6 +51,7 @@
     },
     "root": {
       "inputs": {
+        "crane": "crane",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
