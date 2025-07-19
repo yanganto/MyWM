@@ -7,18 +7,10 @@
       url = "github:oxalica/rust-overlay";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
       };
     };
 
-    crane = {
-      url = "github:ipetkov/crane";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-utils.follows = "flake-utils";
-        rust-overlay.follows = "rust-overlay";
-      };
-    };
+    crane.url = "github:ipetkov/crane";
   };
 
   outputs = { self, nixpkgs, rust-overlay, flake-utils, crane, ... }:
@@ -30,13 +22,8 @@
         };
       in
       {
-        devShell = pkgs.mkShell ({
-          buildInputs = with pkgs; [ 
-            rust-bin.stable."1.87.0".minimal
-            xorg.libX11
-            xorg.libXft
-            pkg-config
-          ];
+        devShells = (import ./nix/shells.nix { 
+          inherit pkgs;
         });
         packages = (import ./nix/packages.nix { 
           inherit self pkgs crane;
