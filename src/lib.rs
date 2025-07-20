@@ -31,7 +31,7 @@ pub fn config() -> Config<RustConn> {
             "4".to_string(),
             "5".to_string(),
         ],
-        focused_border: 0x86A1B2FF.into(),
+        focused_border: 0x4DA2FFFF.into(),
         ..Config::default()
     }
 }
