@@ -38,6 +38,20 @@ pub fn settings() -> HashMap<KeyCode, Box<dyn KeyEventHandler<RustConn>>> {
     );
     map.insert(
         KeyCode {
+            mask: 1 << 3, // Alt
+            code: 23,     // Tab
+        },
+        modify_with(|cs| cs.rotate_focus_to_head()),
+    );
+    map.insert(
+        KeyCode {
+            mask: 1 << 2, // Ctrl
+            code: 24,     // Q
+        },
+        modify_with(|cs| cs.kill_focused()),
+    );
+    map.insert(
+        KeyCode {
             mask: 1 << 6, // Meta
             code: 44,     // J
         },
