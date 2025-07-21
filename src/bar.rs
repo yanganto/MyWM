@@ -13,7 +13,7 @@ const MAX_ACTIVE_WINDOW_CHARS: usize = 250;
 use penrose_ui::{
     bar::{
         widgets::{
-            sys::interval::{amixer_volume, battery_summary, current_date_and_time, wifi_network},
+            sys::interval::{amixer_volume, current_date_and_time, wifi_network},
             ActiveWindowName, CurrentLayout, Workspaces,
         },
         Position, StatusBar,
@@ -56,11 +56,24 @@ pub fn render<X: XConn>() -> penrose_ui::Result<StatusBar<X>> {
                 true,
                 false,
             )),
-            Box::new(wifi_network(padded_style, Duration::new(5, 0))),
-            Box::new(battery_summary("BAT1", padded_style, Duration::new(5, 0))),
-            Box::new(battery_summary("BAT0", padded_style, Duration::new(5, 0))),
-            Box::new(amixer_volume("Master", padded_style, Duration::new(5, 0))),
+            Box::new(battery_summary(padded_style, Duration::new(5, 0))),
             Box::new(current_date_and_time(padded_style, Duration::new(5, 0))),
         ],
+    )
+}
+
+pub fn battery_summary(
+    style: TextStyle,
+    interval: Duration,
+) -> penrose_ui::bar::widgets::IntervalText {
+    penrose_ui::bar::widgets::IntervalText::new(
+        style,
+        move || {
+            penrose_ui::bar::widgets::sys::helpers::read_sys_file("BAT0", "capacity")
+                .map(|bat| format!("{bat}%"))
+        },
+        interval,
+        false,
+        true,
     )
 }
