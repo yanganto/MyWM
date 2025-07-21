@@ -207,8 +207,7 @@ dependencies = [
 [[package]]
 name = "penrose_ui"
 version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "95839b6ec96db89aa488b04162ce4201b49717ad953589389dc74f6a937a08ed"
+source = "git+https://github.com/yanganto/penrose.git?branch=quick-fix#79220a03d9e47185ec9cb922d46cf0d113064fd9"
 dependencies = [
  "penrose",
  "thiserror",
