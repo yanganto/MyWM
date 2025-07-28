@@ -139,7 +139,7 @@ name = "mwm"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "penrose",
+ "penrose 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "penrose_ui",
  "tracing",
  "tracing-subscriber",
@@ -188,7 +188,22 @@ dependencies = [
  "anymap",
  "bitflags",
  "nix",
- "penrose_keysyms",
+ "penrose_keysyms 0.3.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "strum 0.27.1",
+ "thiserror",
+ "tracing",
+ "x11rb",
+]
+
+[[package]]
+name = "penrose"
+version = "0.4.0"
+source = "git+https://github.com/yanganto/penrose.git?branch=quick-fix#27b1ec8a69837efef5d8d6be231a69eccdc390be"
+dependencies = [
+ "anymap",
+ "bitflags",
+ "nix",
+ "penrose_keysyms 0.3.6 (git+https://github.com/yanganto/penrose.git?branch=quick-fix)",
  "strum 0.27.1",
  "thiserror",
  "tracing",
@@ -205,11 +220,19 @@ dependencies = [
 ]
 
 [[package]]
+name = "penrose_keysyms"
+version = "0.3.6"
+source = "git+https://github.com/yanganto/penrose.git?branch=quick-fix#27b1ec8a69837efef5d8d6be231a69eccdc390be"
+dependencies = [
+ "strum 0.27.1",
+]
+
+[[package]]
 name = "penrose_ui"
 version = "0.4.0"
-source = "git+https://github.com/yanganto/penrose.git?branch=quick-fix#79220a03d9e47185ec9cb922d46cf0d113064fd9"
+source = "git+https://github.com/yanganto/penrose.git?branch=quick-fix#27b1ec8a69837efef5d8d6be231a69eccdc390be"
 dependencies = [
- "penrose",
+ "penrose 0.4.0 (git+https://github.com/yanganto/penrose.git?branch=quick-fix)",
  "thiserror",
  "tracing",
  "x11",
